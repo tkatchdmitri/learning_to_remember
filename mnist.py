@@ -37,7 +37,6 @@ def train(args, model, device, train_loader, train_loader2, optimizer, epoch):
     model.train()
     for batch_idx, pair in enumerate(zip(train_loader, train_loader2)):
         (data, target), (data2, target2) = pair
-        # batch_idx2, (data2, target2) = train_loader2)
         data, target = data.to(device), target.to(device)
         data2, target2 = data2.to(device), target2.to(device)
         for _ in range(100):
