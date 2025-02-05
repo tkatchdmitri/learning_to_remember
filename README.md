@@ -1,4 +1,4 @@
-# Zigzag Mnist
+# Zig-Zag MNIST
 What if you take two batches A and B, and alternative between them? 9922/10000 in the first epoch of MNIST after only seeing 120 unique batches (batch_size = 1000). Baseline code based on official PyTorch examples.
 
 with zigzagging:
