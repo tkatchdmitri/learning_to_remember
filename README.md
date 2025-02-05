@@ -1,6 +1,8 @@
 # Zig-Zag MNIST
 What if you take two batches A and B, and alternative between training on them 100 times? ABABABAB.. (100 times). A 1.33% improvement over baseline in the first epoch of MNIST after only seeing 120 unique batches (batch_size = 1000 with 2 data loaders each with 60 batches). Baseline code based on official PyTorch examples. This may allow for faster training when data loading is expensive. Note that complete uniqueness of data between A and B has not been guaranteed in the implementation.
 
+## Results
+
 with zigzagging:
 ```py
 python3.10 mnist.py
@@ -27,3 +29,23 @@ Train Epoch: 1 [50000/60000 (83%)]      Loss: 0.139771
 Test set: Average loss: 0.0645, Accuracy: 9789/10000 (98%)
 ```
 
+## Code
+
+```py
+    model.train()
+    for batch_idx, pair in enumerate(zip(train_loader, train_loader2)):
+        (data, target), (data2, target2) = pair
+        data, target = data.to(device), target.to(device)
+        data2, target2 = data2.to(device), target2.to(device)
+        for _ in range(100):
+            optimizer.zero_grad()
+            output = model(data)
+            loss = F.nll_loss(output, target)
+            loss.backward()
+            optimizer.step()
+            optimizer.zero_grad()
+            output = model(data2)
+            loss = F.nll_loss(output, target2)
+            loss.backward()
+            optimizer.step()
+```
