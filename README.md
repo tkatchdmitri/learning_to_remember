@@ -1,6 +1,6 @@
 # Learning To Remember
 
-
+What if you taught a neural network how to remember before teaching it arbitrary things? The initial configuration of a neural network is not guaranteed to be optimal for remembering. By arriving at zero loss while alternating between batches A and B, we conjecture that the parameter configuration of the network becomes initialized  to a state that is better suited for remembering new data and internal states.
 
 ## Zig-Zag MNIST
 What if you take two batches A and B, and alternative between training on them 100 times? ABABABAB.. (100 times). A 1.33% improvement over baseline in the first epoch of MNIST after only seeing 120 unique batches (batch_size = 1000 with 2 data loaders each with 60 batches). Baseline code based on official PyTorch examples. 
