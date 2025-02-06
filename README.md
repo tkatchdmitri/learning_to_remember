@@ -1,4 +1,8 @@
-# Zig-Zag MNIST
+# Learning To Remember
+
+
+
+## Zig-Zag MNIST
 What if you take two batches A and B, and alternative between training on them 100 times? ABABABAB.. (100 times). A 1.33% improvement over baseline in the first epoch of MNIST after only seeing 120 unique batches (batch_size = 1000 with 2 data loaders each with 60 batches). Baseline code based on official PyTorch examples. 
 
 This may allow for faster training when data loading is expensive. Note that complete uniqueness of data between A and B has not been guaranteed in the implementation. This also shows a maybe counterintuitive result. We do not overfit by alternating in this way. On the contrary, this suggests the loss landscape changes enough when you step that you can afford to revisit the same batch 100 times and still see nonzero loss.
